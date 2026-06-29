@@ -98,4 +98,5 @@ router.delete('/:id/gallery', protect, ownerOrAdmin, salonOwnershipCheck, delete
 // DELETE /api/salons/:id
 router.delete('/:id',         protect, ownerOrAdmin, salonOwnershipCheck, deleteSalon);
 
+
 module.exports = router;

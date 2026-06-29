@@ -97,6 +97,12 @@ const bookingSchema = new mongoose.Schema({
 
   // ── Notes & review ────────────────────────────────────────────────────────
   notes:  { type: String, default: '', maxlength: 300 },
+  // ── Admin / dispute fields ────────────────────────────────────────────────────
+isFlagged:  { type: Boolean, default: false },
+flagReason: { type: String,  default: '' },
+flaggedAt:  { type: Date,    default: null },
+flaggedBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+adminNote:  { type: String,  default: '' },
   rating: {
     score:   { type: Number, min: 1, max: 5, default: null },
     comment: { type: String, default: '' },

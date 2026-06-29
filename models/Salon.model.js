@@ -188,7 +188,9 @@ const salonSchema = new mongoose.Schema(
       type: Boolean,
       default: true,    // soft delete flag
     },
-
+    // ── Admin verification ────────────────────────────────────────────────────────
+verificationReason: { type: String, default: '' },
+rejectedAt:         { type: Date,   default: null },
     // ── Pricing range (for listing card display) ──────────────────────────────
     priceRangeMin: { type: Number, default: 0 },
     priceRangeMax: { type: Number, default: 0 },

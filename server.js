@@ -9,6 +9,7 @@ const connectDB = require('./config/db');
 require('./config/firebase');
 require('./config/cloudinary');
 require('./config/razorpay');
+require("dotenv").config();
 
 connectDB();
 
@@ -46,6 +47,9 @@ const routeFiles = {
   reviews:  './routes/review.routes',
   payments: './routes/payment.routes',
   notifications: './routes/notification.routes',
+  stylists: './routes/stylist.routes',
+  slots: './routes/slot.routes',
+  owner: './routes/owner.routes',
 };
 Object.entries(routeFiles).forEach(([name, path]) => {
   const mod = require(path);
@@ -62,7 +66,11 @@ app.use('/api/queue',    require('./routes/queue.routes'));
 app.use('/api/reviews',  require('./routes/review.routes'));
 app.use('/api/payments', require('./routes/payment.routes'));
 app.use('/api/notifications', require('./routes/notification.routes'));
-
+app.use('/api/owner', require('./routes/owner.routes'));
+app.use('/api/slots', require('./routes/slot.routes'));
+  
+app.use('/api/salons/:salonId/stylists', require('./routes/stylist.routes'));
+app.use('/api/admin', require('./routes/admin.routes'));
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get('/', (req, res) => {
   res.json({ message: '💈 MYSALON API running', version: '1.0.0' });

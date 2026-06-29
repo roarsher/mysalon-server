@@ -1,4 +1,4 @@
-const Notification = require('../models/Notification.model');
+ const Notification = require('../models/Notification.model');
 
 // ── Helper: create a notification (called from other controllers) ─────────────
 const createNotification = async ({ userId, type, title, message, bookingId, salonId }) => {

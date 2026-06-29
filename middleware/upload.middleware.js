@@ -48,6 +48,16 @@ const uploadProfilePhoto = multer({
   limits: { fileSize: 2 * 1024 * 1024 },
 }).single('photo');
 
+
+const uploadStylistPhoto = multer({
+  storage: multer.memoryStorage(),
+  limits:  { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) cb(null, true);
+    else cb(new Error('Only image files allowed'), false);
+  },
+}).single('photo');
+
 /**
  * handleMulterError
  * Place AFTER upload middleware in the route chain to catch multer errors.
@@ -63,4 +73,4 @@ const handleMulterError = (err, req, res, next) => {
   next();
 };
 
-module.exports = { uploadSalonImages, uploadServiceImage, uploadProfilePhoto, handleMulterError };
+module.exports = { uploadSalonImages, uploadServiceImage,uploadStylistPhoto, uploadProfilePhoto, handleMulterError };
